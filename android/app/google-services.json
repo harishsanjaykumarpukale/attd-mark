@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "287505780126",
+    "firebase_url": "https://qrcode-42ec5.firebaseio.com",
+    "project_id": "qrcode-42ec5",
+    "storage_bucket": "qrcode-42ec5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:287505780126:android:4eacb565dd5ab8eb28da8f",
+        "android_client_info": {
+          "package_name": "com.slomosolutions.qrcode"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "287505780126-bs4h0q59diqsco37du8bs35adpo5ggo3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVea995pXZHaV7g6TRI8bxcqLDd-MDY1U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "287505780126-bs4h0q59diqsco37du8bs35adpo5ggo3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
