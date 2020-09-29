@@ -7,6 +7,9 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:giffy_dialog/giffy_dialog.dart';
 import 'package:http/http.dart';
+import 'package:geolocator/geolocator.dart';
+
+const Latitude_Of_ISKON_Temple = 13.0098, Longitude_Of_ISKON_Temple = 77.5511;
 
 void main() {
   runApp(MaterialApp(
@@ -31,7 +34,24 @@ class _ScannerState extends State<Scanner> {
       result1 = '';
       result = '';
       // scanned(context);
-      _add();
+      Position position;
+      try {
+        position = await getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.high,
+            timeLimit: Duration(minutes: 2));
+      } on TimeoutException catch (e) {
+        // To be handled
+        print(e);
+      } on PermissionDeniedException catch (e) {
+        //To be handled
+        print(e);
+      }
+      if (distanceBetween(position.latitude, position.longitude,
+              Latitude_Of_ISKON_Temple, Longitude_Of_ISKON_Temple) <=
+          200)
+        _add();
+      else
+        proxy(context);
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.cameraAccessDenied) {
         result = 'Camera permission Denied';
@@ -94,6 +114,29 @@ class _ScannerState extends State<Scanner> {
             ),
             description: Text(
                 'Found untraceble format of data. Need JSON Data to get scanned and stored'),
+            buttonOkText:
+                Text('Scan Again', style: TextStyle(color: Colors.white)),
+            onOkButtonPressed: () {
+              Navigator.pop(context, _qrScan());
+            },
+          );
+        });
+  }
+
+  proxy(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return NetworkGiffyDialog(
+            image: Image(
+                image: AssetImage('images/error.webp'), fit: BoxFit.cover),
+            title: Text(
+              'Proxy Detected',
+              style: TextStyle(
+                  color: Colors.red, fontSize: 30, fontFamily: 'MetalMania'),
+            ),
+            description: Text(
+                'Your location is not near to temple. Kindly do not put Proxy attendance'),
             buttonOkText:
                 Text('Scan Again', style: TextStyle(color: Colors.white)),
             onOkButtonPressed: () {
