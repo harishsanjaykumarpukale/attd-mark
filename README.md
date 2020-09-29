@@ -12,4 +12,4 @@ A flutter app to mark attendance BY SCANNING QR CODE
 
 3. The User must be present in(near) TEMPLE(13 N,57 E). (#TO BE DONE)
 
-![Sample QR CODE](images/Sample Qr code image .jpg)
+![Sample QR CODE](/images/Sample Qr code image .jpg)
