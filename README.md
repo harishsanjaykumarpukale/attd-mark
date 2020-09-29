@@ -1,16 +1,15 @@
 # qrcode
 
-A new Flutter application.
+A flutter app to mark attendance BY SCANNING QR CODE
 
-## Getting Started
+## Requirements
+1. QR CODE must contain JSON data in following format
+    {
+     "doc_id": "<DOCUMENT ID>",
+     "eid": "EVENT ID"
+    } 
+2. EVENT ID must match .(#TO BE DONE)
 
-This project is a starting point for a Flutter application.
+3. The User must be present in(near) TEMPLE(13 N,57 E). (#TO BE DONE)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Sample QR CODE](images/Sample Qr code image .jpg)

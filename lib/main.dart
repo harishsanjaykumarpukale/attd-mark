@@ -28,10 +28,8 @@ class _ScannerState extends State<Scanner> {
   Future _qrScan() async {
     try {
       qrResult = await BarcodeScanner.scan();
-      //if (qrResult.type == json) {
       result1 = '';
       result = '';
-      Map<Object, dynamic> data = jsonDecode(qrResult.rawContent);
       // scanned(context);
       _add();
     } on PlatformException catch (e) {
@@ -53,18 +51,22 @@ class _ScannerState extends State<Scanner> {
   }
 
   Future _add() async {
-    Map<Object, dynamic> data = jsonDecode(qrResult.rawContent);
+    Map<Object, dynamic> data;
+    try {
+      data = jsonDecode(qrResult.rawContent);
+    } catch (FormatException) {
+      error(context);
+    }
+    print(data);
     String url =
         "https://us-central1-folk-test-8a3ae.cloudfunctions.net/createAttendanceDoc";
-    String jsonData =
-        '{"doc_id": "IBVRqEyt4nGJmWinFyEo","eid": "PxEPNXqbBrrAQaWhXHle"}';
-    Map<String, dynamic> jd = jsonDecode(jsonData);
+
     Map<String, String> headers = {"Content-type": "application/json"};
+
     Response response = await post(
       url,
       headers: headers,
-      body: jsonEncode(
-          {"doc_id": "IBVRqEyt4nGJmWinFyEo", "eid": "PxEPNXqbBrrAQaWhXHle"}),
+      body: jsonEncode(data),
     );
 
     print("Response code" + response.statusCode.toString() + response.body);
